@@ -24,6 +24,7 @@ namespace GooglePlayServices {
     using Google.JarResolver;
 
     using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// Resolver which simply injects dependencies into a gradle template file.
@@ -114,13 +115,17 @@ namespace GooglePlayServices {
         /// <param name="dependencies">Dependencies to inject.</param>
         /// <returns>true if successful, false otherwise.</returns>
         private static bool CopySrcAars(ICollection<Dependency> dependencies) {
+            Debug.Log($"Local dir: {dependencies.Count}");
             bool succeeded = true;
             var aarFiles = new List<KeyValuePair<string, string>>();
             // Copy each .srcaar file to .aar while configuring the plugin importer to ignore the
             // file.
+            Debug.Log(LocalMavenRepository.FindAarsInLocalRepos(dependencies).Count);
+            LocalMavenRepository.FindAarsInLocalRepos(dependencies).ForEach(x => Debug.Log($"FindArr: {x}"));
             foreach (var aar in LocalMavenRepository.FindAarsInLocalRepos(dependencies)) {
                 // Only need to copy for .srcaar
                 if (Path.GetExtension(aar).CompareTo(".srcaar") != 0) {
+                    Debug.Log($"In if about .srcaar");
                     continue;
                 }
 
@@ -183,6 +188,7 @@ namespace GooglePlayServices {
                     succeeded = false;
                 }
             }
+            Debug.Log($"AAR: {aarFiles.Count}");
             foreach (var keyValue in aarFiles) {
                 succeeded &= LocalMavenRepository.PatchPomFile(keyValue.Value, keyValue.Key);
             }
@@ -467,9 +473,12 @@ namespace GooglePlayServices {
             foreach (var line in lines) {
                 if (dependenciesToken.IsMatch(line)) {
                     containsDeps = true;
+                    Debug.Log($"-------- {line}"); 
                     break;
                 }
             }
+
+            Debug.Log($"------ is deps {containsDeps}");
 
             // If a dependencies token isn't present report a warning and abort.
             if (!containsDeps) {

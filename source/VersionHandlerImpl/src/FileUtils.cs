@@ -20,6 +20,7 @@ namespace Google {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// Utility methods to assist with file management in Unity.
@@ -61,6 +62,19 @@ namespace Google {
                 return Directory.GetParent(
                     Path.GetFullPath(
                         UnityEngine.Application.dataPath)).FullName;
+            }
+        }
+
+        /// <summary>
+        /// Returns the project directory (e.g contains the Assets folder) without get parent().
+        /// </summary>
+        /// <returns>Full path to the project directory.</returns>
+        public static string ProjectDirectoryWithoutParent
+        {
+            get
+            {
+                return Path.GetFullPath(
+                        UnityEngine.Application.dataPath);
             }
         }
 
@@ -447,8 +461,15 @@ namespace Google {
                     // This only works if the package is NOT installed from disk. That is, it should
                     // work if the package is installed from a local tarball or from a registry
                     // server.
-                    string absolutePath = Path.GetFullPath(packageDir);
-                    packageDir = absolutePath.Substring(ProjectDirectory.Length + 1);
+                    //string absolutePath = Path.GetFullPath(packageDir);
+                    //packageDir = absolutePath.Substring(ProjectDirectory.Length + 1);
+
+                    //Debug.Log($"Absolute path {absolutePath}");
+
+                    Uri fullPath = new Uri(Path.GetFullPath(packageDir), UriKind.Absolute);
+                    Uri relRoot = new Uri(ProjectDirectoryWithoutParent, UriKind.Absolute);
+
+                    packageDir = relRoot.MakeRelativeUri(fullPath).ToString();
                 }
             } else {
                 nameMatch = PACKAGES_PHYSICAL_PATH_REGEX.Match(path);
@@ -485,17 +506,20 @@ namespace Google {
                 basePath = ASSETS_FOLDER;
                 relativePath = path.Length >= (basePath.Length + 1) ?
                         path.Substring(basePath.Length + 1) : "";
+
                 return true;
             } else if (IsUnderPackageDirectory(path)) {
                 basePath = GetPackageDirectory(path);
                 relativePath = path.Length >= (basePath.Length + 1) ?
                         path.Substring(basePath.Length + 1) : "";
+
                 return true;
             }
 
             // No under Assets folder or Packages folder.
             basePath = "";
             relativePath = path;
+
             return false;
         }
 

@@ -1,0 +1,47 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="AndroidResolver/src/GradleTemplateResolver.cs">
+    <Files>
+      <File FileName="AndroidResolver/src/LocalMavenRepository.cs" Line="110" Column="35" />
+      <File FileName="VersionHandlerImpl/src/FileUtils.cs" />
+      <File FileName="AndroidResolver/src/GradleTemplateResolver.cs" Line="193" Column="51" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ExternalDependencyManager" expanded="True">
+            <Node name="AndroidResolver" expanded="True">
+              <Node name="src" expanded="True">
+                <Node name="GradleTemplateResolver.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="JarResolverLib" expanded="True">
+              <Node name="src" expanded="True">
+                <Node name="Google.JarResolver" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="PackageManagerResolver" expanded="True">
+              <Node name="src" expanded="True" />
+            </Node>
+            <Node name="VersionHandler" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="src" expanded="True" />
+            </Node>
+            <Node name="VersionHandlerImpl" expanded="True">
+              <Node name="src" expanded="True" />
+            </Node>
+            <Node name="VersionHandlerImplTests" expanded="True">
+              <Node name="src" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.JarResolverTests PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
