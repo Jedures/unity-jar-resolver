@@ -22,6 +22,7 @@ namespace Google {
     /// Log severity.
     /// </summary>
     public enum LogLevel {
+
         Debug,
         Verbose,
         Info,

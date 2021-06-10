@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidResolver", "AndroidResolver.csproj", "{82EEDFBE-AFE4-4DEF-99D9-BC929747DD9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82EEDFBE-AFE4-4DEF-99D9-BC929747DD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EEDFBE-AFE4-4DEF-99D9-BC929747DD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EEDFBE-AFE4-4DEF-99D9-BC929747DD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EEDFBE-AFE4-4DEF-99D9-BC929747DD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8BBB390-F8CB-454A-AF73-0D0BE267C825}
+	EndGlobalSection
+EndGlobal

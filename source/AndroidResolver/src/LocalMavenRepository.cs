@@ -38,18 +38,15 @@ namespace GooglePlayServices {
             // Find all repositories embedded in the project.
             var repos = new HashSet<string>();
             var projectUri = GradleResolver.RepoPathToUri(Path.GetFullPath("."));
-            Debug.Log($"Project uri: {projectUri}");
             foreach (var reposAndSources in
                      PlayServicesResolver.GetRepos(dependencies: dependencies)) {
                 var repoUri = reposAndSources.Key;
-                Debug.Log($"Repo URI: {repoUri} and is start with {repoUri.StartsWith(projectUri)} and project uri: {projectUri}");
-                Uri fullPath = new Uri(repoUri, UriKind.Absolute);
-                Uri relRoot = new Uri(projectUri, UriKind.Absolute);
-
-                projectUri = relRoot.MakeRelativeUri(fullPath).ToString();
 
                 if (repoUri.StartsWith(projectUri)) {
                     repos.Add(Uri.UnescapeDataString(repoUri.Substring(projectUri.Length + 1)));
+                } else
+                {
+                    repos.Add(repoUri);
                 }
             }
             return repos;
@@ -71,7 +68,6 @@ namespace GooglePlayServices {
                     foundFiles.AddRange(FindAars(currentDirectory));
                 }
             }
-            Debug.Log($"Found aars: {foundFiles} in directory {directory}");
             return foundFiles;
         }
 
@@ -111,7 +107,6 @@ namespace GooglePlayServices {
             if (sourceFilename == null) {
                 sourceFilename = artifactFilename;
             }
-            Debug.Log($"PATCHING {sourceFilename}");
             if (FileUtils.IsUnderPackageDirectory(artifactFilename)) {
                 // File under Packages folder is immutable.
                 PlayServicesResolver.Log(
